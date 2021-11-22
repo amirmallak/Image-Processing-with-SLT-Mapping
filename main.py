@@ -78,7 +78,6 @@ def main():
     print('\n')
     print("--- Slice Matrix ---\n")
 
-    # sliced_image_matrix: np.ndarray = slice_matrix(dark_gray_image)
     tone_mapping_vector = np.arange(256)  # Tone Mapping vector of shape (1 x 256)
     reconstructed_image: np.ndarray = mapping_image(dark_gray_image, tone_mapping_vector)
     # Computationally Proving that sliceMat(image) * [0:255] == image
@@ -153,6 +152,7 @@ def main():
     plt.title("Target Image for Tone Mapping")
 
     image1_image2_distance = mean_square_distance(image_1, image_2)  # Mean square distance between image_1 and image_2
+
     # Mean square distance between tone mapped image_1 and image_2
     tone_mapped_image1_image2_distance = mean_square_distance(slt_image_1, image_2)
     print(f"Mean square distance between image_1 and image_2 is: {image1_image2_distance}")
@@ -160,6 +160,7 @@ def main():
     print(f"Hence, D(im1, im2) = {image1_image2_distance} > {tone_mapped_image1_image2_distance} = D(TM_im1, im2)")
 
     print("--- Symmetric SLT Map ---\n")
+
     # Computationally Proving
     slt_image_2, _ = slt_map(image_2, image_1)
     slt_symmetric_map_distance = mean_square_distance(slt_image_1, slt_image_2)
